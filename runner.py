@@ -55,8 +55,8 @@ class Haokan(requests.Session):
         return super(Haokan, self).post(self._concat_url(url), *args, **kwargs)
 
 
-def checkin(headers):
-    resp = requests.post("https://haokan.baidu.com/activity/acusercheckin/update?productid=1", data={"productid":1}, headers=headers)
+def checkin(headers, productid):
+    resp = requests.post("https://haokan.baidu.com/activity/acusercheckin/update?productid=%s" % productid, data={"productid":productid}, headers=headers)
     jd= resp.json()
     return jd
 
@@ -67,8 +67,10 @@ def get_filepaths(args):
             print(">>>[error] File not exits!!!")
             exit(0)
         return [fp]
-    return glob.glob(os.path.join(curdir, "profiles/*.txt"))
+    if args.dir:
+        return glob.glob(os.path.join(curdir, args.dir, "*.txt"))
 
+    assert 0, "should not be here!!!"
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -76,12 +78,15 @@ if __name__ == '__main__':
         version='v0.1',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
         description="rally automation script")
+    parser.add_argument("-d", "--dir", dest="dir", action="store", help="directory of profiles")
     parser.add_argument("-f", "--profile", dest="file", action="store",
                         help="filepath of the profile choosed")
-    parser.add_argument("-p", "--productid", dest="productid", default="1", 
-        choices=["1", "2", "6"],action="store")
+    parser.add_argument("-p", "--productid", dest="productid", default=1, type=int,
+        choices=[1,2,6],action="store")
+    parser.add_argument("-l", "--limit", dest="limit", default=30, type=int, action="store")
     args = parser.parse_args()
     productid = args.productid
+    limit = args.limit
     while 1:
         filepaths = get_filepaths(args)
         random.shuffle(filepaths)
@@ -91,16 +96,18 @@ if __name__ == '__main__':
             anaz=Analyzer(fp)
             clt=Haokan(anaz.get_params())
             clt.headers=anaz.get_headers()
-            print '--->CHECKIN', checkin(anaz.get_headers())
+            print '--->CHECKIN', checkin(anaz.get_headers(), productid)
             count=0
-            while 1:
+            while count < limit:
                 postdata=anaz.get_hongbao_post_data(clt.get_video_id(), productid)
                 tips=clt.post_hongbao(postdata)
-                if tips=="limit": print "--->Up to Limit, Exit Loop";break
+                if tips=="limit": break
                 count+=1
                 print count, "%s TIPS:%s"% (time.asctime(), tips)
-                waitsec=60 + 60*random.random()
-                time.sleep(waitsec)
+                if count < limit:
+                    waitsec=60 + 60*random.random()
+                    time.sleep(waitsec)
+            print "--->Up to Limit, Exit Loop."
         b = time.time()
         intervals = 3600*24-int(b-a)+random.randint(-600, 600 )
         time.sleep(intervals)
