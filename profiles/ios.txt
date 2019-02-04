@@ -1,0 +1,23 @@
+POST https://sv.baidu.com/haokan/api?tn=1008350o&ctn=1008350o&imei=E22CC3C5-B3C8-4CD7-A907-C94996876F86&cuid=52DA88D1CF482F536DD9AB5F85E22DFC617DC4A4FFRJPASBRTL&os=ios&osbranch=i0&ua=1080_1920_401&ut=iPhone7%2C1_11.2.6&net_type=1&apiv=4.9.5.10&appv=1&version=4.9.5.10&life=1548248977&clife=1548248977&sids=1436_3-1546_4-1580_2-1722_2-1724_2-1781_2-1797_3-1816_2-1833_1-1838_2-1839_1-1852_2-1858_1-1868_2-1869_1-1886_1&idfa=C7C4EDCA-BAFC-4C0A-91ED-68FAC60E0955&hid=9C91117022C058DFEA76628176A30FD5&log=vhk&location=&cmd=haokan/hongbao HTTP/1.1
+Host: sv.baidu.com
+Connection: keep-alive
+Content-Length: 203
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_6 like Mac OS X) AppleWebKit/604.5.6 (KHTML, like Gecko) Mobile/15D100 haokan/4.9.5.10 (Baidu; P2 11.2.6)/6.2.11_1,7enohP/381d/52DA88D1CF482F536DD9AB5F85E22DFC617DC4A4FFRJPASBRTL/1
+Cookie: BAIDUCUID=_aSKuYP_S80j82fz_iv78_8TSt05i2u0juH98_8iSagAu2aU0uH_i08s1Ppei1aAFbEmA; BAIDUZID=ZPb0HZ6-bxfKeaWmgR91oqKJAIS--SAaoFf9E6hpVOTEyUAmwjCGUCytyCiSfULKmhWzVlDX1lyPOEOfRztBGAQ; BAIDUID=3BD0F1DB65F106BA6F194B1072EEB235:FG=1; BDUSS=RONUs3M0NKZ3hTeFhsM0ZJR1NvLW9hVVQzYmZIZ0preE42SlNoeHV1SWU5VzljQVFBQUFBJCQAAAAAAAAAAAEAAACD2ehMs9XD1M73w9fCtgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB5oSFweaEhcdV
+Accept-Language: zh-Hans-CN;q=1, en-CN;q=0.9, zh-Hant-CN;q=0.8
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+X-TurboNet-Info: 2.12.2188.117
+Accept-Encoding: gzip, deflate
+
+haokan/hongbao=method%3Dget%26productid%3D1%26zid%3DZPb0HZ6-bxfKeaWmgR91oqKJAIS--SAaoFf9E6hpVOTEyUAmwjCGUCytyCiSfULKmhWzVlDX1lyPOEOfRztBGAQ%26videoid%3D9423484391556720472%26tab%3Dindex%26tag%3Drecommend
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; charset=utf-8
+Date: Wed, 23 Jan 2019 13:39:54 GMT
+Server: Apache
+Tracecode: 23938651172571545354012321
+Vary: Accept-Encoding
+Content-Length: 183
+
+{"timestamp":1548250793,"logid":"2393865117","haokan\/hongbao":{"status":0,"msg":"\u6210\u529f","data":{"istip":1,"tips":"+10\u91d1\u5e01","righttips":"+10","upperlimit":0,"ext":""}}}

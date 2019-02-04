@@ -1,0 +1,25 @@
+ST https://sv.baidu.com/haokan/api?tn=1008350o&ctn=1008350o&imei=8DCDAFD1-D1DC-46DF-B305-6CCB50CBFCCF&cuid=90CC8B1C7C9D2D4AD0F3204E0D8553160E6A898D5OMEBDJTPMN&os=ios&osbranch=i0&ua=1080_1920_401&ut=iPhone10%2C2_12.0&net_type=1&apiv=4.10.2.13&appv=1&version=4.10.2.13&life=1549174262&clife=1549174262&sids=1479_3-1746_2-1781_1-1785_1-1804_3-1816_1-1839_2-1840_1-1844_2-1848_2-1849_1-1852_1-1857_2-1868_3-1873_1-1875_3-1895_3-1899_2&idfa=0C698B80-42BB-4547-B932-C21F17C5BFE0&hid=09AEF1158E061788201CE400CBBE371B&log=vhk&location=%7B%0A%20%20%22county%22%20%3A%20%22%E5%AE%9D%E5%B1%B1%E5%8C%BA%22%2C%0A%20%20%22city%22%20%3A%20%22%E4%B8%8A%E6%B5%B7%E5%B8%82%22%2C%0A%20%20%22longitude%22%20%3A%20%22121.367484%22%2C%0A%20%20%22city-code%22%20%3A%20289%2C%0A%20%20%22street%22%20%3A%20%22%E9%99%86%E7%BF%94%E8%B7%AF%22%2C%0A%20%20%22latitude%22%20%3A%20%2231.366298%22%2C%0A%20%20%22prov%22%20%3A%20%22%E4%B8%8A%E6%B5%B7%E5%B8%82%22%0A%7D&cmd=haokan/hongbao HTTP/1.1
+Host: sv.baidu.com
+Connection: keep-alive
+Content-Length: 204
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/16A366 haokan/4.10.2.13 (Baidu; P2 12.0)/0.21_2,01enohP/381d/90CC8B1C7C9D2D4AD0F3204E0D8553160E6A898D5OMEBDJTPMN/1
+Cookie: BAIDUCUID=YuSuuYiOvagQi-ui_8vIa0aLS8_Kava9_8B_8guO2ign8vaHjP-gagfpQu0t8WMZEJFmA; BDUSS=WhtNUVVMHZHS2R0T2JNVzRYODl4WnJKLTRINmxzNE5XN01HZUd6b2czOXUwRjFiQVFBQUFBJCQAAAAAAAAAAAEAAAA75lESbGllcmVuMjA3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG5DNltuQzZbR; BAIDUZID=TLGkXHjbwvYkvi1Lo5-1jl3qX1ib2Z6uYKa41DdbsnHZZt4k2j7IkQwYnGnfUKWmPXGDxPt4JLelI3VBsGoML1A; BAIDUID=0559B816C2642BDECEF623ACE2278CC2:FG=1
+Accept-Language: zh-Hans;q=1, en;q=0.9
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+X-TurboNet-Info: 2.12.2188.117
+Accept-Encoding: gzip, deflate
+
+haokan/hongbao=method%3Dget%26productid%3D1%26zid%3DTLGkXHjbwvYkvi1Lo5-1jl3qX1ib2Z6uYKa41DdbsnHZZt4k2j7IkQwYnGnfUKWmPXGDxPt4JLelI3VBsGoML1A%26videoid%3D10389559894209565651%26tab%3Dindex%26tag%3Drecommend
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Type: application/json; charset=utf-8
+Date: Sun, 03 Feb 2019 06:28:50 GMT
+Server: Apache
+Tracecode: 17305019780353610506020314
+Vary: Accept-Encoding
+Content-Length: 183
+
+{"timestamp":1549175330,"logid":"1730501978","haokan\/hongbao":{"status":0,"msg":"\u6210\u529f","data":{"istip":0,"tips":"+10\u91d1\u5e01","righttips":"+10","upperlimit":0,"ext":""}}}
+
+0
