@@ -1,0 +1,18 @@
+{
+  "headers": {
+    "Accept-Encoding": "gzip",
+    "Charset": "UTF-8",
+    "Connection": "Keep-Alive",
+    "Content-Length": "151",
+    "Content-Type": "application/x-www-form-urlencoded",
+    "Cookie": "BDUSS=kZHbWNEdkNWeEJtUnFEYU1GQk9mNm5iT2tnYjhxeklHUEVIQ3JyLXVJYThSSTVjQVFBQUFBJCQAAAAAAAAAAAEAAAAnxcjhAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALy3Zly8t2Zce; BAIDUZID=2228DB023CAE002EA6BC1EBAE6E4BE13E93D3942588BB4A92F00D8D5E9D408",
+    "Host": "sv.baidu.com",
+    "User-Agent": "Mozilla/5.0 (Linux; Android 5.1; OPPO A37m Build/LMY47I; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.121 Mobile Safari/537.36 haokan/4.9.5.10 (Baidu; P1 5.1)/OPPO_22_1.5_m73A+OPPO/1000575v/776501446F957B6A7655AE0C596BC558%7C076286030074268/1/4.9.5.10/409051/1",
+    "Xray-Req-Func-St-Dns": "okHttp;1550235755713;0",
+    "Xray-Traceid": "02dc1b89-2e88-4410-ae37-2778c5d52a04"
+  },
+  "form": {
+    "haokan/hongbao": "videoid=7466742597941805932&productid=1&tab=&tag=&zid=2228DB023CAE002EA6BC1EBAE6E4BE13E93D3942588BB4A92F00D8D5E9D408"
+  },
+  "url": "https://sv.baidu.com/haokan/api?cmd=haokan/hongbao&log=vhk&tn=1000575v&ctn=1000575v&imei=862470030682670&cuid=776501446F957B6A7655AE0C596BC558|076286030074268&os=android&osbranch=a0&ua=720_1280_320&ut=OPPO%20A37m_5.1_22_OPPO&apiv=4.6.0.0&appv=409051&version=4.9.5.10&life=1550235487&clife=1550235487&hid=086A436264B7382899DC4A6636632738&imsi=0&network=1&location={}&sids=1263_2-1462_2-1816_2-1841_2-1855_2-1873_2-1901_2-1909_3-1913_2-1914_2-1919_4-1922_3-1925_1-1927_4-1930_3-1932_4-1934_1-1944_1-1954_2-1957_1"
+}

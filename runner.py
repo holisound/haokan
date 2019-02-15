@@ -8,7 +8,7 @@ import argparse
 import random
 import glob
 
-from analyze import Analyzer
+from analyze import Analyzer, JSONAnalyzer
 
 reload(sys)
 
@@ -68,7 +68,7 @@ def get_filepaths(args):
             exit(0)
         return [fp]
     if args.dir:
-        return glob.glob(os.path.join(curdir, args.dir, "*.txt"))
+        return glob.glob(os.path.join(curdir, args.dir, "*.*"))
 
     assert 0, "should not be here!!!"
 
@@ -91,9 +91,14 @@ if __name__ == '__main__':
         filepaths = get_filepaths(args)
         random.shuffle(filepaths)
         a = time.time()
+        tip_empty = 0
         for fp in filepaths:
             print '--->SOURCE: %s' % fp
-            anaz=Analyzer(fp)
+            if fp.endswith(".txt"):
+                anaz=Analyzer(fp)
+            elif fp.endswith(".json"):
+                anaz=JSONAnalyzer(fp)
+            else:exit(0)
             clt=Haokan(anaz.get_params())
             clt.headers=anaz.get_headers()
             print '--->CHECKIN', checkin(anaz.get_headers(), productid)
@@ -102,8 +107,11 @@ if __name__ == '__main__':
                 postdata=anaz.get_hongbao_post_data(clt.get_video_id(), productid)
                 tips=clt.post_hongbao(postdata)
                 if tips=="limit": break
+                if tips=="":
+                    tip_empty+=1
+                    if tip_empty >= 2: break
                 count+=1
-                print count, "%s TIPS:%s"% (time.asctime(), tips)
+                print count, "[hongbao] %s TIPS:%s"% (time.asctime(), tips)
                 if count < limit:
                     waitsec=60 + 60*random.random()
                     time.sleep(waitsec)

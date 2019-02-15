@@ -2,8 +2,44 @@
 
 import os
 import urllib
+import json
+
 
 curdir = os.path.dirname(__file__)
+
+
+class JSONAnalyzer(object):
+
+    def __init__(self, filepath):
+        self.filepath = filepath
+        self._load(filepath)
+
+    def _load(self, filepath):
+        with open(filepath) as inf:
+            self.data = json.load(inf)
+
+    def get_params(self):
+        _, querystring = self.data['url'].split('?')
+        res = {}
+        for pair in querystring.split('&'):
+            k, v = pair.split('=')
+            res[k] = v
+        return res
+
+    def get_hongbao_post_data(self, videoid, productid):
+        text = self.data['form']["haokan/hongbao"]
+        arr = []
+        for frag in text.split('&'):
+            k, v = frag.split('=')
+            if k == "videoid":
+                v = str(videoid)
+            elif k == "productid":
+                v = str(productid)
+            arr.append(k + '=' + v)
+        return {"haokan/hongbao": '&'.join(arr)}
+
+    def get_headers(self):
+        return self.data['headers']
 
 
 class Analyzer(object):
@@ -78,5 +114,5 @@ class Analyzer(object):
 if __name__ == '__main__':
     ana = Analyzer("dump.txt")
     # print ana.get_params()
-    print ana.get_headers()
+    # print ana.get_headers()
 
