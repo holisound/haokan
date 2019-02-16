@@ -60,6 +60,11 @@ def checkin(headers, productid):
     jd= resp.json()
     return jd
 
+def bindinvitecode(headers, productid, invitecode):
+    resp = requests.post("https://haokan.baidu.com/activity/tasks/bindinvitecode?productid=%s&inviteCode=%s"%(productid, invitecode) , 
+        data={"productid": productid, "inviteCode": invitecode}, headers=headers)
+    print resp.content
+
 def get_filepaths(args):
     if args.file:
         fp = os.path.join(curdir, args.file)
@@ -74,48 +79,72 @@ def get_filepaths(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-        prog="rally_auto.py",
+        prog="runner.py",
         version='v0.1',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        description="rally automation script")
-    parser.add_argument("-d", "--dir", dest="dir", action="store", help="directory of profiles")
+        description="automation script")
+    # common
     parser.add_argument("-f", "--profile", dest="file", action="store",
                         help="filepath of the profile choosed")
     parser.add_argument("-p", "--productid", dest="productid", default=1, type=int,
         choices=[1,2,6],action="store")
-    parser.add_argument("-l", "--limit", dest="limit", default=30, type=int, action="store")
+    # register parsers
+    subparsers = parser.add_subparsers(help="commands", dest="command")
+    # task
+    task = subparsers.add_parser("task", help="run task")
+    task.add_argument("-d", "--dir", dest="dir", action="store", help="directory of profiles")
+    task.add_argument("-l", "--limit", dest="limit", default=30, type=int, action="store")
+    task.add_argument("--no-checkin", dest="nocheckin", action="store_true")
+    # action
+    bind = subparsers.add_parser("bind", help="bind invitecode")
+    bind.add_argument("-b", "--bind-invitecode", dest="invitecode", action="store")
+
     args = parser.parse_args()
     productid = args.productid
-    limit = args.limit
-    while 1:
-        filepaths = get_filepaths(args)
-        random.shuffle(filepaths)
-        a = time.time()
-        tip_empty = 0
-        for fp in filepaths:
-            print '--->SOURCE: %s' % fp
-            if fp.endswith(".txt"):
-                anaz=Analyzer(fp)
-            elif fp.endswith(".json"):
-                anaz=JSONAnalyzer(fp)
-            else:exit(0)
-            clt=Haokan(anaz.get_params())
-            clt.headers=anaz.get_headers()
-            print '--->CHECKIN', checkin(anaz.get_headers(), productid)
-            count=0
-            while count < limit:
-                postdata=anaz.get_hongbao_post_data(clt.get_video_id(), productid)
-                tips=clt.post_hongbao(postdata)
-                if tips=="limit": break
-                if tips=="":
-                    tip_empty+=1
-                    if tip_empty >= 2: break
-                count+=1
-                print count, "[hongbao] %s TIPS:%s"% (time.asctime(), tips)
-                if count < limit:
-                    waitsec=60 + 60*random.random()
-                    time.sleep(waitsec)
-            print "--->Up to Limit, Exit Loop."
-        b = time.time()
-        intervals = 3600*24-int(b-a)+random.randint(-600, 600 )
-        time.sleep(intervals)
+
+    if args.command == "task":
+        limit = args.limit
+        while 1:
+            filepaths = get_filepaths(args)
+            random.shuffle(filepaths)
+            a = time.time()
+            tip_empty = 0
+            for fp in filepaths:
+                print '--->SOURCE: %s' % fp
+                if fp.endswith(".txt"):
+                    anaz=Analyzer(fp)
+                elif fp.endswith(".json"):
+                    anaz=JSONAnalyzer(fp)
+                else:exit(0)
+                clt=Haokan(anaz.get_params())
+                clt.headers=anaz.get_headers()
+                if not args.nocheckin:
+                    print '--->CHECKIN', checkin(anaz.get_headers(), productid)
+                count=0
+                while count < limit:
+                    postdata=anaz.get_hongbao_post_data(clt.get_video_id(), productid)
+                    tips=clt.post_hongbao(postdata)
+                    if tips=="limit": break
+                    if tips=="":
+                        tip_empty+=1
+                        if tip_empty >= 2: break
+                    count+=1
+                    print count, "[hongbao] %s TIPS:%s"% (time.asctime(), tips)
+                    if count < limit:
+                        waitsec=60 + 60*random.random()
+                        time.sleep(waitsec)
+                print "--->Up to Limit, Exit Loop."
+            b = time.time()
+            intervals = 3600*24-int(b-a)+random.randint(-600, 600 )
+            time.sleep(intervals)
+    elif args.command == "bind":
+        fp = get_filepaths(args)[0]
+        print '--->SOURCE: %s' % fp
+        if fp.endswith(".txt"):
+            anaz=Analyzer(fp)
+        elif fp.endswith(".json"):
+            anaz=JSONAnalyzer(fp)
+        else:exit(0)
+        bindinvitecode(anaz.get_headers(), productid, args.invitecode)
+
+
