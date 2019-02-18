@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask
-# import src.xpit.api
-# import src.auth.api
+import src.api
 import util
 
 
@@ -16,6 +15,5 @@ def make_app(debug=False, **kwargs):
 
 
 app = make_app()
-# app.register_blueprint(src.xpit.api.app, url_prefix="/p/xpit")
-# app.register_blueprint(src.auth.api.app, url_prefix="/p/auth")
+app.register_blueprint(src.api.app, url_prefix="")
 util.init_app(app)

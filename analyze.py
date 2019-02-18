@@ -28,6 +28,8 @@ class JSONAnalyzer(object):
 
     def get_hongbao_post_data(self, videoid, productid):
         text = self.data['form']["haokan/hongbao"]
+        if isinstance(text, list):
+            text = text[0]
         arr = []
         for frag in text.split('&'):
             k, v = frag.split('=')

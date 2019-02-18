@@ -90,19 +90,19 @@ if __name__ == '__main__':
         choices=[1,2,6],action="store")
     # register parsers
     subparsers = parser.add_subparsers(help="commands", dest="command")
-    # task
-    task = subparsers.add_parser("task", help="run task")
-    task.add_argument("-d", "--dir", dest="dir", action="store", help="directory of profiles")
-    task.add_argument("-l", "--limit", dest="limit", default=30, type=int, action="store")
-    task.add_argument("--no-checkin", dest="nocheckin", action="store_true")
-    # action
+    # hongbao
+    hongbao = subparsers.add_parser("hongbao", help="hongbao")
+    hongbao.add_argument("-d", "--dir", dest="dir", action="store", help="directory of profiles")
+    hongbao.add_argument("-l", "--limit", dest="limit", default=30, type=int, action="store")
+    hongbao.add_argument("--no-checkin", dest="nocheckin", action="store_true")
+    # bind
     bind = subparsers.add_parser("bind", help="bind invitecode")
     bind.add_argument("-b", "--bind-invitecode", dest="invitecode", action="store")
 
     args = parser.parse_args()
     productid = args.productid
 
-    if args.command == "task":
+    if args.command == "hongbao":
         limit = args.limit
         while 1:
             filepaths = get_filepaths(args)

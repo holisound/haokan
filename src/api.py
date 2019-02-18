@@ -1,7 +1,7 @@
-from flask import Flask, request
+from flask import Blueprint, request
 import json
 
-app=Flask(__name__)
+app=Blueprint("api", __name__)
 
 @app.route("/haokan/api", methods=["GET", "POST"])
 def test():
@@ -13,8 +13,3 @@ def test():
     with open("here.json", "w") as outf:
         json.dump(res, outf)
     return "ok"
-
-
-app.run(debug=True, host="0.0.0.0", threaded=True)
-
-
