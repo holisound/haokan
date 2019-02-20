@@ -3,7 +3,7 @@ import json
 
 app=Blueprint("api", __name__)
 
-@app.route("/haokan/api", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def test():
     res={}
     res['url'] = request.full_path
