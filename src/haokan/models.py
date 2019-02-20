@@ -14,14 +14,15 @@ db = SQLAlchemy()
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    phonenumber = db.Column(db.String(32))
-    args = db.Column(db.Text)
+    phone = db.Column(db.String(32))
+    url = db.Column(db.Text)
+    form = db.Column(db.Text)
     headers = db.Column(db.Text)
-    forms = db.Column(db.Text)
     createtime = db.Column(db.DateTime, default=datetime.now)    
 
 
 def init_app(app):
+    db.init_app(app)
     engine = create_engine(config.SQLALCHEMY_DATABASE_URI_PREFIX)
     DB_Session = sessionmaker(bind=engine)
     session = DB_Session()

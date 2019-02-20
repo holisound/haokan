@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from flask import Flask
 import src.haokan.api
+import src.haokan.models
 import util
 
 
@@ -15,5 +16,6 @@ def make_app(debug=False, **kwargs):
 
 
 app = make_app()
+src.haokan.models.init_app(app)
 app.register_blueprint(src.haokan.api.app, url_prefix="/haokan/api")
 util.init_app(app)
