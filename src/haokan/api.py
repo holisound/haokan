@@ -5,8 +5,10 @@ import json
 
 app=Blueprint("haokan", __name__)
 
-
-@app.route("", methods=["GET", "POST"])
+@app.route("/")
+def index():
+    return "ok"
+@app.route("/dump", methods=["GET", "POST"])
 def dump_profile():
     res={}
     res['url'] = request.full_path
