@@ -14,16 +14,26 @@ db = SQLAlchemy()
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    phone = db.Column(db.String(32))
+    displayname = db.Column(db.Text)
+    username = db.Column(db.Text)
+    email = db.Column(db.Text)
+    phone = db.Column(db.Text)
+    app = db.Column(db.Text)
     url = db.Column(db.Text)
     form = db.Column(db.Text)
     headers = db.Column(db.Text)
     createtime = db.Column(db.DateTime, default=datetime.now)    
+    updatetime = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     def create(self, **kwargs):
         for k, v in kwargs.items():
             setattr(self, k, v)
         db.session.add(self)
+        db.session.commit()
+
+    def update(self, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
         db.session.commit()
 
 def init_app(app):
