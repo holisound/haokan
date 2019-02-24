@@ -20,6 +20,11 @@ class Profile(db.Model):
     headers = db.Column(db.Text)
     createtime = db.Column(db.DateTime, default=datetime.now)    
 
+    def create(self, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+        db.session.add(self)
+        db.session.commit()
 
 def init_app(app):
     db.init_app(app)

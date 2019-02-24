@@ -77,7 +77,7 @@ def get_filepaths(args):
 
     assert 0, "should not be here!!!"
 
-if __name__ == '__main__':
+def run():
     parser = argparse.ArgumentParser(
         prog="runner.py",
         version='v0.1',
@@ -129,7 +129,7 @@ if __name__ == '__main__':
                         tip_empty+=1
                         if tip_empty >= 2: break
                     count+=1
-                    print count, "[hongbao] %s TIPS:%s"% (time.asctime(), tips)
+                    print "[hongbao] %s TIPS:%s [%d]"% (time.asctime(), tips, count)
                     if count < limit:
                         waitsec=60 + 60*random.random()
                         time.sleep(waitsec)
@@ -148,3 +148,10 @@ if __name__ == '__main__':
         bindinvitecode(anaz.get_headers(), productid, args.invitecode)
 
 
+def main():
+    try: 
+        run()
+    except KeyboardInterrupt:
+        exit(0)
+if __name__ == '__main__':
+    main()

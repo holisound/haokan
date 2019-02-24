@@ -1,15 +1,20 @@
 from flask import Blueprint, request
+from models import Profile
 import json
 
-app=Blueprint("api", __name__)
 
-@app.route("/", methods=["GET", "POST"])
-def test():
+app=Blueprint("haokan", __name__)
+
+
+@app.route("", methods=["GET", "POST"])
+def dump_profile():
     res={}
     res['url'] = request.full_path
-    res['form'] = dict(request.form)
+    res["phone"] = request.args.get("phone")
+    res['form'] = json.dumps(request.form) if request.form else None
     res['headers'] = dict(request.headers)
     res['headers']["Host"]="sv.baidu.com"
-    with open("here.json", "w") as outf:
-        json.dump(res, outf)
+    res["headers"] = json.dumps(res["headers"])
+    profile = Profile()
+    profile.create(**res)
     return "ok"
