@@ -15,7 +15,7 @@ db = SQLAlchemy()
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     displayname = db.Column(db.Text)
-    uid = db.Column(String(32))
+    uid = db.Column(db.String(32))
     username = db.Column(db.Text)
     email = db.Column(db.Text)
     phone = db.Column(db.Text)
