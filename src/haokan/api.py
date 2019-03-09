@@ -21,7 +21,7 @@ class DumpProfile(MethodView):
         res['headers'] = dict(request.headers)
         res['headers']["Host"]="sv.baidu.com"
         res["headers"] = json.dumps(res["headers"])
-        profile = Profile.query.filter_by(username=info["username"]).first()
+        profile = Profile.query.filter_by(uid=info["uid"]).first()
         if profile:
             profile.update(**res)
         else:
@@ -41,7 +41,7 @@ class DumpProfile(MethodView):
         infostr = request.args.get("info", "{}")
         info = json.loads(infostr)
         res={}
-        fields = {"displayname", "username", "email", "phone", "app"}
+        fields = {"displayname", "username", "email", "phone", "app", "uid"}
         for f in fields:
             res[f] = info[f]
         return res
